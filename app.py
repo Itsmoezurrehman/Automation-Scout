@@ -304,8 +304,7 @@ if mode == "Discovery":
         st.success(st.session_state.pop("_saved_msg"))
     
     if client:
-        desc = st.text_area("Describe the process in plain English"),
-                            key="disc_desc")
+        desc = st.text_area("Describe the process in plain English"), key="disc_desc")
         if st.button("Analyze description") and desc:
             fields = llm_extract(desc, client, model)
             if fields:
@@ -315,27 +314,20 @@ if mode == "Discovery":
     draft = st.session_state.get("_draft", {})
     c1, c2 = st.columns(2)
     with c1:
-        name = st.text_input("Process name", value=draft.get("name", ""),
-                             key="disc_name")
+        name = st.text_input("Process name", value=draft.get("name", ""), key="disc_name")
         frequency = st.number_input("Times per month", 1, 1000,
-                                    int(draft.get("frequency", 4)),
-                                    key="disc_freq")
+                                    int(draft.get("frequency", 4)), key="disc_freq")
         hours = st.number_input("Hours per run", 0.1, 100.0,
-                                float(draft.get("hours", 1.0)),
-                                key="disc_hrs")
+                                float(draft.get("hours", 1.0)), key="disc_hrs")
     with c2:
         people = st.number_input("People involved", 1, 50,
-                                 int(draft.get("people", 2)),
-                                 key="disc_ppl")
+                                 int(draft.get("people", 2)), key="disc_ppl")
         pct_manual = st.slider("% manual / repetitive", 0, 100,
-                               int(draft.get("pct_manual", 70)),
-                               key="disc_pct")
+                               int(draft.get("pct_manual", 70)), key="disc_pct")
         tools = st.number_input("Number of tools/apps used", 1, 20,
-                                int(draft.get("tools", 3)),
-                                key="disc_tools")
+                                int(draft.get("tools", 3)), key="disc_tools")
     needs_judgment = st.checkbox("Needs human judgment",
-                                 value=bool(draft.get("needs_judgment", False)),
-                                 key="disc_jdg")
+                                 value=bool(draft.get("needs_judgment", False)), key="disc_jdg")
 
     if name:
         preview = {"name": name, "frequency": frequency, "hours": hours,

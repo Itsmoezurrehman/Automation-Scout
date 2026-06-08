@@ -1,7 +1,6 @@
 """
 Automation Scout — Your go to AI agent finding where your team should automate next.
 """
-
 import json
 import requests
 import streamlit as st
@@ -272,7 +271,7 @@ with st.sidebar:
     st.subheader("AI engine")
     _deployment_preview = get_deployment()
     if get_client() and _deployment_preview:
-        st.success(f"Successfully connected to Azure AI Foundry · {_deployment_preview}")
+        st.success(f"✓ Connected to Azure AI Foundry · {_deployment_preview}")
         st.caption(
             "Grounding extraction and recommendations through Microsoft "
             "Foundry IQ. The model reasons over the scoring engine's "
@@ -299,9 +298,6 @@ if mode == "Discovery":
     st.header("Discovery — log a process")
     st.write("Describe a process you suspect is wasteful. The Scout scores its "
              "automation potential and adds it to the inventory.")
-
-    if st.session_state.get("_saved_msg"):
-        st.success(st.session_state.pop("_saved_msg"))
 
     if client:
         desc = st.text_area("Describe the process in plain English")
@@ -337,7 +333,7 @@ if mode == "Discovery":
         if st.button("Save to inventory", type="primary"):
             add_process(url, key, preview)
             st.session_state.pop("_draft", None)
-            st.session_state["_saved_msg"] = f"Saved '{name}' to inventory."
+            st.success(f"Added '{name}'.")
             st.rerun()
 
 else:  # Analysis

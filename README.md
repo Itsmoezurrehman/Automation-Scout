@@ -93,4 +93,4 @@ Copilot was used throughout the build. A few places where it earned its keep:
 
 ## Architecture
 
-![Architecture](architecture.svg)
+![Architecture](Architecturediagram.jpg)

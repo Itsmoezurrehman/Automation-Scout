@@ -304,7 +304,7 @@ if mode == "Discovery":
         st.success(st.session_state.pop("_saved_msg"))
     
     if client:
-        desc = st.text_area("Describe the process in plain English"), key="disc_desc")
+        desc = st.text_area("Describe the process in plain English", key="disc_desc")
         if st.button("Analyze description") and desc:
             fields = llm_extract(desc, client, model)
             if fields:

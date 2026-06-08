@@ -271,7 +271,7 @@ with st.sidebar:
     st.subheader("AI engine")
     _deployment_preview = get_deployment()
     if get_client() and _deployment_preview:
-        st.success(f"✓ Connected to Azure AI Foundry · {_deployment_preview}")
+        st.success(f"Successfully connected to Azure AI Foundry · {_deployment_preview}")
         st.caption(
             "Grounding extraction and recommendations through Microsoft "
             "Foundry IQ. The model reasons over the scoring engine's "

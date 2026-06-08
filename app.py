@@ -302,9 +302,9 @@ if mode == "Discovery":
 
     if st.session_state.get("_saved_msg"):
         st.success(st.session_state.pop("_saved_msg"))
-    
+
     if client:
-        desc = st.text_area("Describe the process in plain English", key="disc_desc")
+        desc = st.text_area("Describe the process in plain English")
         if st.button("Analyze description") and desc:
             fields = llm_extract(desc, client, model)
             if fields:
@@ -314,20 +314,19 @@ if mode == "Discovery":
     draft = st.session_state.get("_draft", {})
     c1, c2 = st.columns(2)
     with c1:
-        name = st.text_input("Process name", value=draft.get("name", ""), key="disc_name")
+        name = st.text_input("Process name", value=draft.get("name", ""))
         frequency = st.number_input("Times per month", 1, 1000,
-                                    int(draft.get("frequency", 4)), key="disc_freq")
+                                    int(draft.get("frequency", 4)))
         hours = st.number_input("Hours per run", 0.1, 100.0,
-                                float(draft.get("hours", 1.0)), key="disc_hrs")
+                                float(draft.get("hours", 1.0)))
     with c2:
-        people = st.number_input("People involved", 1, 50,
-                                 int(draft.get("people", 2)), key="disc_ppl")
+        people = st.number_input("People involved", 1, 50, int(draft.get("people", 2)))
         pct_manual = st.slider("% manual / repetitive", 0, 100,
-                               int(draft.get("pct_manual", 70)), key="disc_pct")
+                               int(draft.get("pct_manual", 70)))
         tools = st.number_input("Number of tools/apps used", 1, 20,
-                                int(draft.get("tools", 3)), key="disc_tools")
+                                int(draft.get("tools", 3)))
     needs_judgment = st.checkbox("Needs human judgment",
-                                 value=bool(draft.get("needs_judgment", False)), key="disc_jdg")
+                                 value=bool(draft.get("needs_judgment", False)))
 
     if name:
         preview = {"name": name, "frequency": frequency, "hours": hours,
@@ -337,14 +336,8 @@ if mode == "Discovery":
         st.metric("Automation potential score", f"{score} / 100")
         if st.button("Save to inventory", type="primary"):
             add_process(url, key, preview)
-            _saved_name = name
-            # Clear all widgets' state so the form resets on rerun
-            for _wk in ["disc_name", "disc_freq", "disc_hrs", "disc_ppl",
-                        "disc_pct", "disc_tools", "disc_jdg", "disc_desc"]:
-                st.session_state.pop(_wk, None)
             st.session_state.pop("_draft", None)
-            # Store message before rerun so it survives the page refresh
-            st.session_state["_saved_msg"] = f"Saved '{_saved_name}' to inventory."
+            st.session_state["_saved_msg"] = f"Saved '{name}' to inventory."
             st.rerun()
 
 else:  # Analysis

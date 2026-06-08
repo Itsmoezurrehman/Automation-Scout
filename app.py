@@ -263,7 +263,7 @@ st.set_page_config(page_title="Automation Scout", page_icon="🔍", layout="wide
 url, key = get_sb_config()
 
 with st.sidebar:
-    st.title("🔍 Automation Scout")
+    st.title("Automation Scout 🔍")
     st.caption("Finds where your team should automate next.")
     mode = st.radio("Mode", ["Discovery", "Analysis"])
     st.caption("💾 Persistent storage: " + ("on (Supabase)" if url else "off (session only)"))

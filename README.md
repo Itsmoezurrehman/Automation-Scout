@@ -1,4 +1,4 @@
-# 🔍 Automation Scout
+# Automation Scout 🔍
 
 An AI agent that finds where a team should automate next. Describe a process you
 suspect is wasteful and the Scout scores its automation potential, builds a

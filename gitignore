@@ -1,0 +1,13 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Streamlit secrets — never commit your token
+.streamlit/secrets.toml
+.env
+
+# OS
+.DS_Store
+Thumbs.db

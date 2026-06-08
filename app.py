@@ -1,16 +1,5 @@
 """
 Automation Scout — Your go to AI agent finding where your team should automate next.
-
-Creative Apps track build. Runs fully offline (rule-based scoring + ranking).
-Conversational discovery and narrative recommendations are grounded through
-Microsoft Foundry IQ — recommendations reason over the structured output of the
-scoring engine (score, breakdown, rank in inventory) rather than freelancing.
-
-Configure via Streamlit secrets:
-  AZURE_FOUNDRY_BASE_URL   (project endpoint ending in /openai/v1/)
-  AZURE_FOUNDRY_KEY        (API key)
-  AZURE_FOUNDRY_DEPLOYMENT (deployment name, e.g. gpt-5-mini)
-  SUPABASE_URL, SUPABASE_KEY (optional persistent storage)
 """
 
 import json

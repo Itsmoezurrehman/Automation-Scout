@@ -5,7 +5,7 @@ import json
 import requests
 import streamlit as st
 
-# OpenAI Python SDK — used as a generic client for the Azure Foundry v1 endpoint
+# OpenAI Python SDK
 try:
     from openai import OpenAI
     _OPENAI_AVAILABLE = True
@@ -63,7 +63,7 @@ SEED = [
 ]
 
 
-# Supabase persistence (via REST; falls back to session state)
+# Supabase persistence
 def get_sb_config():
     """Return (base_url, key) from Streamlit secrets, or (None, None)."""
     try:
@@ -135,7 +135,7 @@ def load_sample_data(url, key):
     return True
 
 
-# LLM helpers
+# LLM assistants
 @st.cache_resource(show_spinner=False)
 def get_client():
     """Cached OpenAI-SDK client pointed at the Azure Foundry project endpoint.
@@ -336,7 +336,8 @@ if mode == "Discovery":
             st.success(f"Added '{name}'.")
             st.rerun()
 
-else:  # Analysis
+else:  
+    # Analysis
     st.header("Analysis — what to automate next")
     processes = load_processes(url, key)
     ranked = sorted(processes, key=lambda p: compute_score(p)[0], reverse=True)
